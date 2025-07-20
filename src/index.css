@@ -1,0 +1,532 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Japanese/Ghibli-inspired Design System */
+@layer base {
+  :root {
+    /* Ghibli Color Palette */
+    --background: 220 25% 8%;
+    --foreground: 50 30% 95%;
+    
+    /* Japanese Indigo & Forest Greens */
+    --primary: 220 45% 15%;
+    --primary-foreground: 50 25% 98%;
+    --primary-glow: 210 45% 25%;
+    
+    /* Warm Japanese Gold */
+    --secondary: 45 85% 70%;
+    --secondary-foreground: 220 45% 15%;
+    
+    /* Soft Forest Green */
+    --accent: 140 25% 35%;
+    --accent-foreground: 50 25% 98%;
+    --accent-light: 140 35% 55%;
+    
+    /* Muted Earth Tones */
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 70%;
+    
+    /* Card Surfaces */
+    --card: 220 25% 12%;
+    --card-foreground: 50 25% 95%;
+    --card-accent: 220 20% 18%;
+    
+    /* Interactive Elements */
+    --border: 220 15% 25%;
+    --input: 220 20% 18%;
+    --ring: 210 45% 45%;
+    
+    /* Special Effects */
+    --glow-primary: 210 100% 60%;
+    --glow-secondary: 45 100% 75%;
+    --glow-accent: 140 60% 60%;
+    
+    /* Japanese Traditional Colors */
+    --sakura: 340 60% 85%;
+    --indigo: 240 45% 25%;
+    --bamboo: 120 25% 45%;
+    --sunset: 15 85% 65%;
+    
+    /* Gradients */
+    --gradient-ghibli: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--secondary)));
+    --gradient-sky: linear-gradient(180deg, hsl(220 45% 15%), hsl(200 35% 25%), hsl(180 25% 35%));
+    --gradient-forest: linear-gradient(135deg, hsl(140 35% 20%), hsl(120 25% 30%), hsl(100 35% 25%));
+    --gradient-tech: linear-gradient(45deg, hsl(var(--glow-primary)), hsl(var(--glow-accent)));
+    
+    /* Shadows & Effects */
+    --shadow-glow: 0 0 40px hsl(var(--glow-primary) / 0.3);
+    --shadow-elegant: 0 25px 50px -12px hsl(220 25% 5% / 0.6);
+    --shadow-card: 0 10px 30px -8px hsl(220 25% 5% / 0.4);
+    
+    /* 3D Effects */
+    --perspective: 1000px;
+    --transform-card: rotateX(5deg) rotateY(-5deg);
+    
+    /* Border Radius */
+    --radius: 1rem;
+    --radius-large: 1.5rem;
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans JP', 'Inter', sans-serif;
+    background: var(--gradient-sky);
+    background-attachment: fixed;
+  }
+  
+  /* Japanese Typography */
+  .font-japanese {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  
+  .font-code {
+    font-family: 'Fira Code', monospace;
+  }
+}
+
+@layer components {
+  /* Enhanced Ghibli Glass Effect with more 3D */
+  .glass-card {
+    @apply relative;
+    background: linear-gradient(135deg, 
+      hsl(var(--card) / 0.15) 0%,
+      hsl(var(--card-accent) / 0.25) 50%,
+      hsl(var(--card) / 0.15) 100%
+    );
+    backdrop-filter: blur(25px) saturate(200%);
+    border: 1px solid hsl(var(--border) / 0.4);
+    box-shadow: var(--shadow-card),
+                inset 0 1px 0 hsl(var(--foreground) / 0.15),
+                inset 0 -1px 0 hsl(var(--foreground) / 0.05);
+    transform-style: preserve-3d;
+  }
+  
+  /* Advanced 3D Card Effects */
+  .card-3d {
+    transform-style: preserve-3d;
+    perspective: var(--perspective);
+    transition: var(--transition-smooth);
+    transform: translateZ(0) rotateX(2deg) rotateY(-2deg);
+  }
+  
+  .card-3d:hover {
+    transform: translateZ(20px) rotateX(-5deg) rotateY(5deg) scale(1.05);
+    box-shadow: var(--shadow-elegant), var(--shadow-glow),
+                0 40px 80px -20px hsl(var(--primary) / 0.3);
+  }
+
+  /* Deep 3D Effect */
+  .card-deep-3d {
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(10deg) rotateY(-10deg);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+
+  .card-deep-3d:hover {
+    transform: perspective(1000px) rotateX(-15deg) rotateY(15deg) translateZ(50px);
+    box-shadow: 0 60px 120px -30px hsl(var(--primary) / 0.4);
+  }
+  
+  /* Floating Animation with 3D rotation */
+  .float {
+    animation: float3d 8s ease-in-out infinite;
+  }
+
+  .float-delayed {
+    animation: float3d 8s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+
+  .float-slow {
+    animation: float3d 12s ease-in-out infinite;
+    animation-delay: -4s;
+  }
+  
+  /* Parallax 3D Elements */
+  .parallax-3d {
+    transform-style: preserve-3d;
+    animation: parallax3d 20s linear infinite;
+  }
+
+  /* Enhanced Tech Grid Background */
+  .tech-grid {
+    background-image: 
+      radial-gradient(circle at 1px 1px, hsl(var(--glow-primary) / 0.4) 1px, transparent 0),
+      radial-gradient(circle at 15px 15px, hsl(var(--glow-accent) / 0.2) 1px, transparent 0);
+    background-size: 30px 30px, 60px 60px;
+    animation: grid-move 25s linear infinite, grid-pulse 4s ease-in-out infinite;
+  }
+
+  /* 3D Tech Grid Overlay */
+  .tech-grid-3d {
+    background-image: 
+      linear-gradient(90deg, hsl(var(--glow-primary) / 0.1) 1px, transparent 1px),
+      linear-gradient(hsl(var(--glow-primary) / 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: grid3d-move 30s linear infinite;
+    transform: perspective(1000px) rotateX(60deg);
+  }
+  
+  /* Enhanced Glow Effects */
+  .glow-primary {
+    box-shadow: 0 0 30px hsl(var(--glow-primary) / 0.6),
+                0 0 60px hsl(var(--glow-primary) / 0.3),
+                inset 0 0 20px hsl(var(--glow-primary) / 0.1);
+  }
+  
+  .glow-accent {
+    box-shadow: 0 0 30px hsl(var(--glow-accent) / 0.6),
+                0 0 60px hsl(var(--glow-accent) / 0.3),
+                inset 0 0 20px hsl(var(--glow-accent) / 0.1);
+  }
+
+  .glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  
+  /* Enhanced Button Styles with 3D */
+  .btn-ghibli {
+    @apply relative overflow-hidden;
+    background: var(--gradient-tech);
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-bounce);
+    transform: perspective(500px) rotateX(5deg);
+    transform-style: preserve-3d;
+  }
+  
+  .btn-ghibli:hover {
+    transform: perspective(500px) rotateX(-5deg) translateY(-5px) scale(1.05);
+    box-shadow: var(--shadow-elegant), var(--shadow-glow),
+                0 25px 50px -12px hsl(var(--primary) / 0.4);
+  }
+  
+  .btn-ghibli::before {
+    content: '';
+    @apply absolute inset-0 opacity-0;
+    background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.2), transparent);
+    transition: opacity 0.4s ease;
+  }
+  
+  .btn-ghibli:hover::before {
+    opacity: 1;
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  /* 3D Morphing Buttons */
+  .btn-morph {
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  }
+
+  .btn-morph:hover {
+    transform: perspective(1000px) rotateX(-10deg) rotateY(10deg) scale(1.1);
+  }
+  
+  /* Enhanced Navigation Styles */
+  .nav-glass {
+    background: linear-gradient(135deg, 
+      hsl(var(--background) / 0.9) 0%,
+      hsl(var(--card) / 0.7) 100%
+    );
+    backdrop-filter: blur(30px) saturate(200%);
+    border-bottom: 1px solid hsl(var(--border) / 0.4);
+    box-shadow: 0 8px 32px hsl(var(--background) / 0.3);
+  }
+  
+  /* 3D Text Effects */
+  .text-3d {
+    text-shadow: 
+      0 1px 0 hsl(var(--foreground) / 0.1),
+      0 2px 0 hsl(var(--foreground) / 0.1),
+      0 3px 0 hsl(var(--foreground) / 0.1),
+      0 4px 0 hsl(var(--foreground) / 0.1),
+      0 5px 10px hsl(var(--background) / 0.5);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--glow-primary) / 0.8),
+                 0 0 40px hsl(var(--glow-primary) / 0.4),
+                 0 0 60px hsl(var(--glow-primary) / 0.2);
+  }
+  
+  .text-gradient {
+    background: var(--gradient-tech);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease-in-out infinite;
+  }
+
+  /* Holographic Effect */
+  .holographic {
+    background: linear-gradient(45deg, 
+      hsl(var(--glow-primary)), 
+      hsl(var(--glow-accent)), 
+      hsl(var(--glow-secondary)),
+      hsl(var(--glow-primary))
+    );
+    background-size: 400% 400%;
+    animation: holographic 6s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Particle Effects */
+  .particle-field {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .particle-field::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, hsl(var(--glow-primary) / 0.3), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(var(--glow-accent) / 0.3), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(var(--glow-secondary) / 0.3), transparent);
+    background-repeat: repeat;
+    background-size: 150px 100px;
+    animation: particles 15s linear infinite;
+  }
+}
+
+@layer utilities {
+  /* Enhanced Keyframe Animations */
+  @keyframes float3d {
+    0%, 100% { 
+      transform: translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg); 
+    }
+    25% { 
+      transform: translateY(-20px) translateZ(10px) rotateX(5deg) rotateY(-2deg); 
+    }
+    50% { 
+      transform: translateY(-10px) translateZ(20px) rotateX(-2deg) rotateY(5deg); 
+    }
+    75% { 
+      transform: translateY(-25px) translateZ(5px) rotateX(3deg) rotateY(-3deg); 
+    }
+  }
+
+  @keyframes parallax3d {
+    0% { 
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px); 
+    }
+    25% { 
+      transform: perspective(1000px) rotateX(5deg) rotateY(-10deg) translateZ(20px); 
+    }
+    50% { 
+      transform: perspective(1000px) rotateX(-5deg) rotateY(10deg) translateZ(-10px); 
+    }
+    75% { 
+      transform: perspective(1000px) rotateX(3deg) rotateY(-5deg) translateZ(15px); 
+    }
+    100% { 
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px); 
+    }
+  }
+
+  @keyframes grid3d-move {
+    0% { transform: perspective(1000px) rotateX(60deg) translateY(0px); }
+    100% { transform: perspective(1000px) rotateX(60deg) translateY(-40px); }
+  }
+
+  @keyframes grid-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.4),
+                  0 0 40px hsl(var(--glow-primary) / 0.2);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--glow-primary) / 0.8),
+                  0 0 80px hsl(var(--glow-primary) / 0.4);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes holographic {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+  }
+
+  @keyframes particles {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-100px) rotate(360deg); }
+  }
+  
+  @keyframes grid-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 30px 30px; }
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px) translateZ(-20px) rotateX(10deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) translateZ(0) rotateX(0deg);
+    }
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px) translateZ(-20px) rotateX(-10deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) translateZ(0) rotateX(0deg);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.7) translateZ(-50px) rotateY(15deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateZ(0) rotateY(0deg);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(60px) translateZ(-30px) rotateY(-15deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) translateZ(0) rotateY(0deg);
+    }
+  }
+
+  @keyframes morphIn {
+    from {
+      opacity: 0;
+      transform: perspective(1000px) rotateX(90deg) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: perspective(1000px) rotateX(0deg) scale(1);
+    }
+  }
+
+  @keyframes levitate {
+    0%, 100% { 
+      transform: translateY(0px) rotateX(0deg) rotateZ(0deg); 
+    }
+    33% { 
+      transform: translateY(-15px) rotateX(5deg) rotateZ(1deg); 
+    }
+    66% { 
+      transform: translateY(-8px) rotateX(-3deg) rotateZ(-1deg); 
+    }
+  }
+  
+  /* Enhanced Animation Classes */
+  .animate-fadeInUp {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  
+  .animate-fadeInDown {
+    animation: fadeInDown 1s ease-out forwards;
+  }
+  
+  .animate-scaleIn {
+    animation: scaleIn 0.8s ease-out forwards;
+  }
+  
+  .animate-slideInRight {
+    animation: slideInRight 1s ease-out forwards;
+  }
+
+  .animate-morphIn {
+    animation: morphIn 1.2s cubic-bezier(0.23, 1, 0.320, 1) forwards;
+  }
+
+  .animate-levitate {
+    animation: levitate 4s ease-in-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  
+  /* Enhanced Delay Classes */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+  .delay-700 { animation-delay: 0.7s; }
+  .delay-800 { animation-delay: 0.8s; }
+  .delay-1000 { animation-delay: 1s; }
+
+  /* 3D Transform Utilities */
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .perspective-1500 {
+    perspective: 1500px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
